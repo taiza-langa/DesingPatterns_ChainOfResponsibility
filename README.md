@@ -1,18 +1,17 @@
-## Getting Started
+# Chain of Responsibility - Aprovação de Requisições
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto implementa o padrão de projeto Chain of Responsibility para aprovação de requisições financeiras com base em diferentes níveis hierárquicos dentro de uma organização.
 
-## Folder Structure
+## 📌 Descrição
+A aplicação define uma cadeia de manipuladores (handlers) responsáveis por aprovar ou rejeitar requisições com base em valores pré-definidos:
 
-The workspace contains two folders by default, where:
+Funcionário → Aprova requisições até R$ 1.000
+Gerente → Aprova requisições até R$ 5.000
+Diretor → Aprova requisições até R$ 10.000
+Valores acima de R$ 10.000 são rejeitados.
+Cada manipulador repassa a solicitação ao próximo nível caso não tenha permissão para aprovar a requisição.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## 🛠 Estrutura do Código
+Handler (Classe abstrata): Define a interface para os manipuladores e armazena a referência para o próximo handler.
+FuncionarioHandler, GerenteHandler, DiretorHandler: Implementam as regras de aprovação de requisições.
+Main: Configura a cadeia de responsabilidade e processa diferentes valores de requisição.
